@@ -4,6 +4,7 @@
   "description": "Using grunt.js for html markup",
   "main": "web.js",
   "scripts": {
+    "start": "node web.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "moonspam",
