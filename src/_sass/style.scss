@@ -381,6 +381,9 @@ footer {
   font-weight: 300;
   font-size: 12px;
   color: $gray;
+  a {
+    color: $gray;
+  }
 }
 
 @media screen and (max-width: 640px) {
