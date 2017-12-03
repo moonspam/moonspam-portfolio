@@ -1,0 +1,23 @@
+{
+  "default": [],
+  "dev": [
+    "compass",
+    "connect:dev",
+    "watch"
+  ],
+  "live": [
+    "connect:live:keepalive"
+  ],
+  "build": [
+    "clean",
+    "jshint",
+    "concat",
+    "uglify",
+    "copy",
+    "compass",
+    "concat_css",
+    "cssmin",
+    "imagemin",
+    "string-replace"
+  ]
+}
