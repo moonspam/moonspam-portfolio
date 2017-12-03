@@ -314,6 +314,7 @@ header .wrap .info:before {
   background-color: #78909c;
   border-radius: 5px;
   text-transform: uppercase;
+  font-size: 16px;
   overflow: hidden;
 }
 .contents .skill li:after {
@@ -480,4 +481,101 @@ footer {
   font-weight: 300;
   font-size: 12px;
   color: #78909c;
+}
+
+@media screen and (max-width: 640px) {
+  .wrap {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  header {
+    height: 180px;
+  }
+  header .wrap {
+    padding-top: 80px;
+  }
+  header .wrap > img {
+    width: 100px;
+    height: 100px;
+  }
+  header .wrap .info {
+    font-size: 10px;
+  }
+
+  .contents h1 {
+    padding: 24px 0 6px;
+    font-size: 34px;
+    line-height: 44px;
+  }
+  .contents h1 a {
+    top: 34px;
+  }
+  .contents h2 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .contents h3, .contents h4 {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .contents p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .contents .skill li {
+    font-size: 13px;
+  }
+  .contents .company {
+    margin-bottom: 24px;
+  }
+  .contents .company .company_name {
+    padding-left: 68px;
+    padding-right: 14px;
+  }
+  .contents .company .company_name:before {
+    background-image: url("../img/company@2x.png");
+    background-size: 28px 38px;
+  }
+  .contents .company .company_name span {
+    font-size: 13px;
+  }
+  .contents .company .project {
+    padding: 0 14px;
+  }
+  .contents .company .project > h4 {
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+  .contents .company .project > h4:before {
+    left: -14px;
+    top: 12px;
+    margin-top: auto;
+  }
+  .contents .company .project > h4 small {
+    display: block;
+    padding-left: 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .contents .company .project .url {
+    margin-bottom: 10px;
+  }
+  .contents .company .project blockquote {
+    margin: 10px 0;
+    padding: 8px 14px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .contents .company .project .todo {
+    margin-bottom: 10px;
+  }
+  .contents .company .project .todo li {
+    font-size: 14px;
+  }
+
+  footer {
+    padding: 20px 0;
+    font-size: 10px;
+  }
 }
