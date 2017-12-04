@@ -33,8 +33,7 @@ header {
   height: 360px;
   background: #90a4ae url("../img/bg.png");
   border-bottom: 1px solid #13191c;
-  @include transition-property(background-color);
-  @include transition-duration(1s);
+  @include transition(background-color 1s, height .3s);
   &:after {
     display: block;
     position: absolute;
@@ -133,10 +132,14 @@ header {
     position: relative;
     padding-top: 160px;
     text-align: center;
+    @include transition(padding .3s);
     > img {
       position: relative;
       vertical-align: top;
+      width: 200px;
+      height: 200px;
       z-index: 1;
+      @include transition(all .3s);
     }
     .info {
       position: absolute;
@@ -207,7 +210,6 @@ header {
         content: "#"
       }
       a {
-        text-decoration: none;
         font-weight: 500;
         color: $white;
       }

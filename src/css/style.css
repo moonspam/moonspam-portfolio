@@ -85,14 +85,10 @@ header {
   height: 360px;
   background: #90a4ae url("../img/bg.png");
   border-bottom: 1px solid #13191c;
-  -moz-transition-property: background-color;
-  -o-transition-property: background-color;
-  -webkit-transition-property: background-color;
-  transition-property: background-color;
-  -moz-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  transition-duration: 1s;
+  -moz-transition: background-color 1s, height 0.3s;
+  -o-transition: background-color 1s, height 0.3s;
+  -webkit-transition: background-color 1s, height 0.3s;
+  transition: background-color 1s, height 0.3s;
 }
 header:after {
   display: block;
@@ -196,11 +192,21 @@ header .wrap {
   position: relative;
   padding-top: 160px;
   text-align: center;
+  -moz-transition: padding 0.3s;
+  -o-transition: padding 0.3s;
+  -webkit-transition: padding 0.3s;
+  transition: padding 0.3s;
 }
 header .wrap > img {
   position: relative;
   vertical-align: top;
+  width: 200px;
+  height: 200px;
   z-index: 1;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 header .wrap .info {
   position: absolute;
@@ -276,7 +282,6 @@ header .wrap .info:before {
   content: "#";
 }
 .contents .profile p > span a {
-  text-decoration: none;
   font-weight: 500;
   color: #eceff1;
 }
