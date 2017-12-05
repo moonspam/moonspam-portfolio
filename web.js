@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV === "production") {
+  require('newrelic');
+}
+
 var path = require("path");
 var express = require("express");
 var favicon = require("serve-favicon");
@@ -19,5 +23,5 @@ app.use(morgan("combined")); // combined or dev
 var port = process.env.PORT || 8001; // cafe24 port 8001
 
 app.listen(port, function() {
-    console.log("Server is running on " + port);
+  console.log("Server is running on " + port);
 });
