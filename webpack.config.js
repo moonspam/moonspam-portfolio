@@ -24,7 +24,7 @@ const siteInfo = {
       type: 'image/jpeg',
       width: '1280',
       height: '720',
-      alt: 'alternate text',
+      alt: 'Moon Portfolio',
     },
   },
   html: [
