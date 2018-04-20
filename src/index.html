@@ -2,17 +2,11 @@
 <html lang="ko">
 
 <head>
-  <title>문포트폴리오</title>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="문성영 포트폴리오 사이트">
-  <meta property="og:title" content="문포트폴리오">
-  <meta property="og:description" content="문성영 포트폴리오 사이트">
-  <meta property="og:image" content="img/share.png">
-  <!--(compress-css-start)-->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!--(compress-css-end)-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  ${require('html-loader?interpolate!./_template/share.html')}
+  <title>@@_title</title>
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <!-- webfont -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
@@ -20,12 +14,7 @@
 
 <body>
 
-  <header>
-    <div class="wrap">
-      <span class="info">Seoul, Korea</span>
-      <img src="img/me.gif" alt="me">
-    </div>
-  </header>
+  ${require('html-loader?interpolate!./_template/header.html')}
 
   <div class="contents">
     <div class="wrap">
@@ -147,11 +136,7 @@
     </div>
   </div>
 
-  <footer>Copyright &copy; 2017 by Moonspam. All right reserved.<br><a href="https://github.com/moonspam/moonspam-portfolio">Check it out Github</a></footer>
-
-  <!--(compress-js-start)-->
-  <script src="js/ui.js"></script>
-  <!--(compress-js-end)-->
+  ${require('html-loader?interpolate!./_template/footer.html')}
 
 </body>
 

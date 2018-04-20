@@ -1,6 +1,0 @@
-{
-  "-W117": true,
-  "globals": {
-    "jQuery": true
-  }
-}
