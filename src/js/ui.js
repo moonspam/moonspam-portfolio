@@ -11,7 +11,7 @@
     const header = $('header');
 
     $(document).ready(() => {
-      const weatherApi = '//api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=e8337d945c60e268e0795d92f78d7fe3';
+      const weatherApi = `//api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=${process.env.OPEN_WEATHER_MAP_KEY}`;
 
       $.getJSON(weatherApi).done((data) => {
         weather = data.weather['0'].icon;
