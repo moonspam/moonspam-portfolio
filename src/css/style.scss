@@ -155,7 +155,7 @@ header {
   .wrap {
     padding: 10px 20px;
   }
-  h1 {
+  h2 {
     position: relative;
     padding: 38px 0 20px;
     font-weight: 700;
@@ -178,12 +178,12 @@ header {
       }
     }
   }
-  h2 {
+  h3 {
     font-weight: 500;
     font-size: 30px;
     line-height: 36px;
   }
-  h3, h4 {
+  h4, h5 {
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
@@ -296,7 +296,7 @@ header {
     }
     .project {
       padding: 0 20px 0 76px;
-      > h4 {
+      > h5 {
         position: relative;
         margin-top: 24px;
         font-weight: 700;
@@ -412,7 +412,7 @@ footer {
     }
   }
   .contents {
-    h1 {
+    h2 {
       padding: 24px 0 6px;
       font-size: 34px;
       line-height: 44px;
@@ -420,11 +420,11 @@ footer {
         top: 34px;
       }
     }
-    h2 {
+    h3 {
       font-size: 24px;
       line-height: 30px;
     }
-    h3, h4 {
+    h4, h5 {
       font-size: 16px;
       line-height: 28px;
     }
@@ -452,7 +452,7 @@ footer {
       }
       .project {
         padding: 0 14px;
-        > h4 {
+        > h5 {
           margin-top: 12px;
           margin-bottom: 4px;
           &:before {
