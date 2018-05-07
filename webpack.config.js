@@ -51,6 +51,9 @@ module.exports = (env) => {
       filename: `${file}.html`,
       hash: true,
       inject: 'body',
+      minify: {
+        removeScriptTypeAttributes: true,
+      },
       chunks: ['app'],
     })
   ));
