@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const sourcePath = './src/';
 const outputPath = './dist/';
@@ -37,11 +36,6 @@ module.exports = (env) => {
   const plugins = [
     new CleanWebpackPlugin([outputPath]),
     new ExtractTextPlugin('./css/styles.css'),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
   ];
 
   // siteInfo.html 값의 개수에 따라 HtmlWebpackPlugin 생성
@@ -104,6 +98,7 @@ module.exports = (env) => {
       watchContentBase: true,
       inline: true,
     },
+    mode: env.NODE_ENV === 'development' ? 'development' : 'production',
     devtool: env.NODE_ENV === 'development' ? 'source-map' : false,
     module: {
       rules: [
@@ -114,9 +109,13 @@ module.exports = (env) => {
               loader: 'css-loader',
               options: {
                 minimize: env.NODE_ENV === 'production',
+                sourceMap: env.NODE_ENV === 'development',
               },
             }, {
               loader: 'sass-loader',
+              options: {
+                sourceMap: env.NODE_ENV === 'development',
+              },
             }],
             fallback: 'style-loader',
             publicPath: '../',
