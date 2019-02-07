@@ -16,10 +16,10 @@ const siteInfo = {
   keywords: '문성영,포트폴리오,사이트,Portfolio,moonspam',
   og: {
     locale: 'ko_KR',
-    url: 'http://moonspam.me/',
+    url: 'http://moonspam.com/',
     type: 'website',
     img: {
-      url: 'http://moonspam.me/',
+      url: 'http://moonspam.com/',
       type: 'image/jpeg',
       width: '1280',
       height: '720',
