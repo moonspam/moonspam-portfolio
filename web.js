@@ -1,7 +1,3 @@
-if(process.env.NODE_ENV === "production") {
-  require('newrelic');
-}
-
 var path = require("path");
 var express = require("express");
 var favicon = require("serve-favicon");
