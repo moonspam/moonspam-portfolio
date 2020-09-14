@@ -234,7 +234,7 @@ header {
       position: relative;
       vertical-align: top;
       display: inline-block;
-      margin: 2px 0;
+      margin: 2px;
       padding: 4px 12px;
       background-color: $gray;
       border-radius: 5px;
@@ -297,7 +297,7 @@ header {
     }
     .project {
       padding: 0 20px 0 76px;
-      > h5 {
+      h5 {
         position: relative;
         margin-top: 24px;
         font-weight: 700;
@@ -455,7 +455,7 @@ footer {
       }
       .project {
         padding: 0 14px;
-        > h5 {
+        h5 {
           margin-top: 12px;
           margin-bottom: 4px;
           &:before {

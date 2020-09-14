@@ -5,11 +5,12 @@ module.exports = {
   ],
   "env": {
     "browser": ["last 2 versions", "safari >= 7"],
-    "jquery": true
   },
   "rules": {
     "no-console": 0,
     "no-alert": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
     "global-require": 0,
   },
   "globals": {

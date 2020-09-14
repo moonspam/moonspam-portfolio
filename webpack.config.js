@@ -89,9 +89,6 @@ module.exports = (env) => {
       filename: './js/[name].bundle.js',
       path: path.resolve(__dirname, outputPath),
     },
-    externals: {
-      jquery: 'jQuery',
-    },
     devServer: {
       open: true,
       contentBase: path.resolve(__dirname, outputPath),

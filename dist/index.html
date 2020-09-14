@@ -19,187 +19,75 @@
   <meta property="og:image:height" content="720">
   <meta property="og:image:alt" content="Moon Portfolio">
   <title>문포트폴리오</title>
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- webfont -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
-  <link href="./css/styles.css?7d458ac2139ff2a08ae6" rel="stylesheet">
+  <link href="./css/styles.css?6e9f4c4691a43d8e0a8a" rel="stylesheet">
 </head>
 
 <body>
 
-  <header> <span class="info">Seoul, Korea</span>
-    <img src="img/a3449324d3cca98bacb1c67fbee5a7d5.gif" alt="me"> </header>
+  <header id="BG"> <span class="info">Seoul, Korea</span> <img src="img/a3449324d3cca98bacb1c67fbee5a7d5.gif" alt="me"> </header>
 
-  <div class="contents">
+  <div id="app" class="contents">
     <h1>문성영 포트폴리오</h1>
     <div class="wrap">
       <!-- Profile -->
       <section class="profile">
-        <h2 id="profile">
-          <a href="#profile" title="Profile 바로 가기" class="anchor">링크</a>Profile</h2>
+        <h2 id="profile"><a href="#profile" title="Profile 바로 가기" class="anchor">링크</a>Profile</h2>
         <h3><span class="emoji">👨‍💻</span> 문성영</h3>
         <p>
-          <span>호기심_많은</span>
-          <span>프론트엔드_개발자</span>
-          <span>자연산_파마머리</span>
-          <span>품절남</span>
-          <span>서울_관악구_주민</span>
-          <span>부산이_고향</span>
-          <span>화장실에서_아이디어_창출하기</span>
-          <span>조조_영화</span>
-          <span>겜돌이</span>
-          <span><a href="http://lunch.moonspam.com/" target="_blank">맛집탐방</a></span>
-          <span><a href="https://www.instagram.com/tonkatstagram/" target="_blank">돈가스_덕후</a></span>
+          <span v-for="tag in tags">{{ tag.txt }}</span>
+          <span><a href="//lunch.moonspam.com" target="_blank">맛집탐방</a></span>
+          <span><a href="//www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
         </p>
         <ul>
-          <li>
-            <a href="https://moonspam.github.io/" target="_blank">Blog</a>
-          </li>
-          <li>
-            <a href="https://codepen.io/moonspam/" target="_blank">CodePen</a>
-          </li>
-          <li>
-            <a href="https://github.com/moonspam" target="_blank">Github</a>
+          <li v-for="link in links">
+            <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
           </li>
         </ul>
       </section>
       <!-- Skill -->
       <section>
-        <h2 id="skills">
-          <a href="#skills" title="Skills 바로 가기" class="anchor">링크</a>Skills</h2>
+        <h2 id="skills"><a href="#skills" title="Skills 바로 가기" class="anchor">링크</a>Skills</h2>
         <ul class="skill">
-          <li class="per_90"><span>HTML</span></li>
-          <li class="per_90"><span>CSS</span></li>
-          <li class="per_80"><span>Sass</span></li>
-          <li class="per_80"><span>Less</span></li>
-          <li class="per_50"><span>Javascript</span></li>
-          <li class="per_70"><span>jQuery</span></li>
-          <li class="per_30"><span>Node</span></li>
-          <li class="per_40"><span>Git</span></li>
-          <li class="per_40"><span>Github</span></li>
-          <li class="per_40"><span>SVN</span></li>
+          <li v-for="skill in skills" :class="'per_'+skill.per" :title="skill.per+'%'"><span>{{ skill.txt }}</span></li>
         </ul>
       </section>
       <!-- Experience -->
       <section>
-        <h2 id="experience">
-          <a href="#experience" title="Experience 바로 가기" class="anchor">링크</a>Experience</h2>
-        <section class="company">
+        <h2 id="experience"><a href="#experience" title="Experience 바로 가기" class="anchor">링크</a>Experience</h2>
+        <section v-for="company in companys" class="company">
           <div class="company_name">
-            <h4>넥슨코리아</h4>
-            <span class="date">2018.06 ~ 현재</span>
+            <h4>{{ company.name }}</h4>
+            <span v-if="company.position" class="position">{{ company.position }}</span>
+            <span v-if="company.date" class="date">{{ company.date }}</span>
           </div>
-        </section>
-        <section class="company">
-          <div class="company_name">
-            <h4>(주)액토즈소프트</h4>
-            <span class="position">과장</span>
-            <span class="date">2013.05 ~ 2018.06</span>
-          </div>
-          <section class="project">
-            <h5>온라인 게임 서비스 운영
-              <small>2015.12 ~ 2018.06</small>
-            </h5>
-            <ul class="url">
-              <li>
-                <a href="http://www.ff14.co.kr/" target="_blank">ff14.co.kr</a>
-              </li>
-              <li>
-                <a href="http://latale.happyoz.com/main.asp" target="_blank">latale.happyoz.com</a>
-              </li>
-              <li>
-                <a href="http://us.dragonnest.com/main" target="_blank">us.dragonnest.com</a>
-              </li>
-            </ul>
-            <ul class="todo">
-              <li>파이널판타지14, 드래곤네스트, 라테일 등 자사 온라인게임
-                <br>프로모션/홈페이지 제작</li>
-              <li>협업을 위한 가이드 제작 및 자동화 작업환경 구축 (Webpack, Sass)
-                <a href="https://github.com/moonspam/webpack-base-template" class="link" target="_blank" title="GitHub">링크 이동</a>
-              </li>
-              <li>SVN을 이용한 버전 관리</li>
-            </ul>
-            <h5>모바일 게임 서비스 운영
-              <small>2013.05 ~ 2018.06</small>
-            </h5>
-            <ul class="url">
-              <li>
-                <a href="http://dnm.actoz.com/" target="_blank">dnm.actoz.com</a>
-              </li>
-            </ul>
-            <ul class="todo">
-              <li>드래곤네스트M, 확산성 밀리언 아서, 강철의 기사 등 자사 모바일게임
-                <br>프로모션/홈페이지 제작</li>
-              <li>모바일 플랫폼 Chef SDK UI 개발 (인증, 빌링, 통계, 쿠폰)</li>
-              <li>사용성 테스트 사이트 제작</li>
-            </ul>
-            <h5>WEGL eSports 사이트 개발 관리
-              <small>2017.06 ~ 2017.10</small>
-            </h5>
-            <ul class="url">
-              <li>
-                <a href="http://wegl.com/" target="_blank">wegl.com</a>
-              </li>
-            </ul>
-            <blockquote cite="http://wegl.com/About/WEGL#About">모두를 위한 e스포츠(eSports for everyone!)라는 슬로건 아래 2017년 탄생한 글로벌 e스포츠 대회를 소개하는 WEGL 공식 사이트입니다.</blockquote>
-            <ul class="todo">
-              <li>반응형 웹, 웹 표준</li>
-              <li>자동화 도구를 이용한 작업환경 구축 (Grunt, Less)
-                <a href="https://github.com/moonspam/grunt.js-template" class="link" target="_blank" title="GitHub">링크 이동</a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="company">
-          <div class="company_name">
-            <h4>홈스테드(주)</h4>
-            <span class="position">주임</span>
-            <span class="date">2011.05 ~ 2012.09</span>
-          </div>
-          <section class="project">
-            <h5>온라인 서비스 운영</h5>
-            <ul class="todo">
-              <li>신규 소셜 미디어 서비스 구축</li>
-              <li>홈스테드 사이트 제작 관리</li>
-              <li>소셜 미디어 운영</li>
-              <li>쇼핑몰 제작 및 관리</li>
-            </ul>
-          </section>
-        </section>
-        <section class="company">
-          <div class="company_name">
-            <h4>(주)놀터</h4>
-            <span class="position">사원</span>
-            <span class="date">2009.03 ~ 2011.02</span>
-          </div>
-          <section class="project">
-            <h5>화장품 도매 거래 사이트 동동구리무 제작
-              <small>2010.02 ~ 2011.02</small>
-            </h5>
-            <ul class="url">
-              <li>
-                <a href="http://ddcos.co.kr/kr/" target="_blank">ddcos.co.kr</a>
-              </li>
-            </ul>
-            <h5>여행 포털 서비스 놀터 제작
-              <small>2009.03 ~ 2010.02</small>
-            </h5>
-            <ul class="todo">
-              <li>웹 표준, 웹 접근성</li>
-              <li>한국관광공사 제휴 서비스 지원</li>
-            </ul>
+          <section v-if="company.projects" class="project">
+            <div v-for="project in company.projects">
+              <h5>{{ project.title }} <small v-if="project.date">{{ project.date }}</small></h5>
+              <ul v-if="project.links" class="url">
+                <li v-for="link in project.links">
+                  <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
+                </li>
+              </ul>
+              <blockquote v-if="project.info" :cite="project.info.cite" v-html="project.info.txt"></blockquote>
+              <ul v-if="project.todos" class="todo">
+                <li v-for="todo in project.todos">
+                  <span v-html="todo.txt"></span> <a v-if="todo.url" :href="'//'+todo.url" class="link" target="_blank" :title="todo.title">링크 이동</a>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
       </section>
 
-      <footer>Copyright &copy; 2018 by Moonspam. All right reserved.
-        <br>
-        <a href="https://github.com/moonspam/moonspam-portfolio">Check it out Github</a>
-      </footer>
+      <footer>Copyright &copy; 2018 by Moonspam. All right reserved.<br><a href="https://github.com/moonspam/moonspam-portfolio">Check it out Github</a></footer>
     </div>
   </div>
 
-  <script src="./js/app.bundle.js?7d458ac2139ff2a08ae6"></script>
+  <script src="./js/app.bundle.js?6e9f4c4691a43d8e0a8a"></script>
 </body>
 
 </html>
