@@ -225,7 +225,7 @@ export default {
     WebFont.load({
       custom: {
         families: ['Noto Sans KR'],
-        urls: ['//fonts.googleapis.com/earlyaccess/notosanskr.css'],
+        urls: ['//fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap'],
       },
     });
   },
