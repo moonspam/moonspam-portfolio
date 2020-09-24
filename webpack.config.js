@@ -7,6 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
@@ -43,6 +44,9 @@ module.exports = (env) => {
           OWM_ID: JSON.stringify(process.env.OWM_ID),
         },
       }),
+    new MiniCssExtractPlugin({
+      filename: './css/style.css',
+    }),
     new VueLoaderPlugin(),
   ];
 
@@ -118,9 +122,14 @@ module.exports = (env) => {
           loader: 'vue-loader',
         },
         {
-          test: /\.scss$/,
+          test: /\.(sa|sc|c)ss$/,
           use: [
-            'vue-style-loader',
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../',
+              },
+            },
             'css-loader',
             'sass-loader',
           ],
