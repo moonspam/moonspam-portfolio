@@ -8,7 +8,7 @@
         <h3><span class="emoji">👨‍💻</span> 문성영</h3>
         <p>
           <span v-for="tag in tags" :key="tag.id">{{ tag.txt }}</span>
-          <span><a href="//lunch.moonspam.com" target="_blank">맛집탐방</a></span>
+          <span><a href="http://lunch.moonspam.com" target="_blank">맛집탐방</a></span>
           <span><a href="//www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
         </p>
         <ul>
