@@ -4,10 +4,6 @@ var favicon = require("serve-favicon");
 var morgan = require("morgan");
 var app = express();
 
-var dotenv = require("dotenv");
-
-dotenv.config();
-
 app.get('/', function(req, res) {
   res.render(path.join(__dirname, "dist", "index.html"));
 });
