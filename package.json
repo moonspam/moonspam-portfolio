@@ -5,6 +5,7 @@
   "main": "web.js",
   "scripts": {
     "start": "node web.js",
+    "heroku-postbuild": "webpack --optimize-minimize --env.NODE_ENV=production",
     "wp:build": "webpack --optimize-minimize --env.NODE_ENV=production",
     "wp:start": "webpack-dev-server --env.NODE_ENV=development",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,16 +13,17 @@
   "author": "moonspam",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^0.1.19",
+    "compass-mixins": "^0.12.10",
     "css-loader": "^1.0.1",
+    "dotenv-webpack": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.22.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
     "html-beautify-webpack-plugin": "^1.0.5",
     "html-loader": "^0.5.5",
@@ -30,14 +32,19 @@
     "nodemon": "^2.0.4",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.44.1",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.10.1",
+    "axios": "^0.20.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "vue": "^2.6.12"
   }
 }

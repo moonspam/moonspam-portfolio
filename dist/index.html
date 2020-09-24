@@ -19,75 +19,17 @@
   <meta property="og:image:height" content="720">
   <meta property="og:image:alt" content="Moon Portfolio">
   <title>문포트폴리오</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- webfont -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
-  <link href="./css/styles.css?6e9f4c4691a43d8e0a8a" rel="stylesheet">
 </head>
 
 <body>
 
-  <header id="BG"> <span class="info">Seoul, Korea</span> <img src="img/a3449324d3cca98bacb1c67fbee5a7d5.gif" alt="me"> </header>
+  <header id="BG"><span class="info">Seoul, Korea</span><img src="img/a3449324d3cca98bacb1c67fbee5a7d5.gif" alt="me"></header>
 
-  <div id="app" class="contents">
-    <h1>문성영 포트폴리오</h1>
-    <div class="wrap">
-      <!-- Profile -->
-      <section class="profile">
-        <h2 id="profile"><a href="#profile" title="Profile 바로 가기" class="anchor">링크</a>Profile</h2>
-        <h3><span class="emoji">👨‍💻</span> 문성영</h3>
-        <p>
-          <span v-for="tag in tags">{{ tag.txt }}</span>
-          <span><a href="//lunch.moonspam.com" target="_blank">맛집탐방</a></span>
-          <span><a href="//www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
-        </p>
-        <ul>
-          <li v-for="link in links">
-            <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
-          </li>
-        </ul>
-      </section>
-      <!-- Skill -->
-      <section>
-        <h2 id="skills"><a href="#skills" title="Skills 바로 가기" class="anchor">링크</a>Skills</h2>
-        <ul class="skill">
-          <li v-for="skill in skills" :class="'per_'+skill.per" :title="skill.per+'%'"><span>{{ skill.txt }}</span></li>
-        </ul>
-      </section>
-      <!-- Experience -->
-      <section>
-        <h2 id="experience"><a href="#experience" title="Experience 바로 가기" class="anchor">링크</a>Experience</h2>
-        <section v-for="company in companys" class="company">
-          <div class="company_name">
-            <h4>{{ company.name }}</h4>
-            <span v-if="company.position" class="position">{{ company.position }}</span>
-            <span v-if="company.date" class="date">{{ company.date }}</span>
-          </div>
-          <section v-if="company.projects" class="project">
-            <div v-for="project in company.projects">
-              <h5>{{ project.title }} <small v-if="project.date">{{ project.date }}</small></h5>
-              <ul v-if="project.links" class="url">
-                <li v-for="link in project.links">
-                  <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
-                </li>
-              </ul>
-              <blockquote v-if="project.info" :cite="project.info.cite" v-html="project.info.txt"></blockquote>
-              <ul v-if="project.todos" class="todo">
-                <li v-for="todo in project.todos">
-                  <span v-html="todo.txt"></span> <a v-if="todo.url" :href="'//'+todo.url" class="link" target="_blank" :title="todo.title">링크 이동</a>
-                </li>
-              </ul>
-            </div>
-          </section>
-        </section>
-      </section>
+  <div id="app"></div>
 
-      <footer>Copyright &copy; 2018 by Moonspam. All right reserved.<br><a href="https://github.com/moonspam/moonspam-portfolio">Check it out Github</a></footer>
-    </div>
-  </div>
-
-  <script src="./js/app.bundle.js?6e9f4c4691a43d8e0a8a"></script>
+  <script src="./js/app.bundle.js?a261da6b67cdbdce03a0"></script>
 </body>
 
 </html>

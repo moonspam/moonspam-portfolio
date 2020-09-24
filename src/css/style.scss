@@ -1,8 +1,12 @@
-@import "lib/compass/reset";
-@import "lib/compass/css3";
+@import '~compass-mixins/lib/compass/reset';
+@import '~compass-mixins/lib/compass/css3';
 @import "variables";
 
 // style
+html {
+  scroll-behavior: smooth;
+}
+
 section, article, aside, footer, header, nav, hgroup {
   display:block;
 }

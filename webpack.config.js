@@ -3,8 +3,9 @@ const path = require('path');
 const sourcePath = './src/';
 const outputPath = './dist/';
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
@@ -35,7 +36,8 @@ module.exports = (env) => {
   // Webpack 플러그인
   const plugins = [
     new CleanWebpackPlugin([outputPath]),
-    new ExtractTextPlugin('./css/styles.css'),
+    new Dotenv(),
+    new VueLoaderPlugin(),
   ];
 
   // siteInfo.html 값의 개수에 따라 HtmlWebpackPlugin 생성
@@ -83,11 +85,17 @@ module.exports = (env) => {
   return {
     context: path.resolve(__dirname, sourcePath),
     entry: {
-      app: ['./css/style.scss', './js/ui.js'],
+      app: ['@babel/polyfill', './css/style.scss', './js/ui.js'],
     },
     output: {
       filename: './js/[name].bundle.js',
       path: path.resolve(__dirname, outputPath),
+    },
+    resolve: {
+      alias: {
+        vue$: 'vue/dist/vue.esm.js',
+      },
+      extensions: ['*', '.js', '.vue', '.json'],
     },
     devServer: {
       open: true,
@@ -100,23 +108,16 @@ module.exports = (env) => {
     module: {
       rules: [
         {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+        },
+        {
           test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            use: [{
-              loader: 'css-loader',
-              options: {
-                minimize: env.NODE_ENV === 'production',
-                sourceMap: env.NODE_ENV === 'development',
-              },
-            }, {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: env.NODE_ENV === 'development',
-              },
-            }],
-            fallback: 'style-loader',
-            publicPath: '../',
-          }),
+          use: [
+            'vue-style-loader',
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.(jpe?g|png|gif)$/,
@@ -143,7 +144,7 @@ module.exports = (env) => {
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
-            presets: ['babel-preset-env'],
+            presets: ['@babel/preset-env'],
           },
         },
       ],
