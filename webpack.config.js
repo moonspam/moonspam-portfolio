@@ -4,6 +4,7 @@ const sourcePath = './src/';
 const outputPath = './dist/';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
