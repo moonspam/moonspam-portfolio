@@ -36,9 +36,12 @@ module.exports = (env) => {
   // Webpack 플러그인
   const plugins = [
     new CleanWebpackPlugin([outputPath]),
-    new Dotenv({
-      silent: process.env.NODE_ENV === 'production',
-    }),
+    env.NODE_ENV !== 'production' ? new Dotenv()
+      : new webpack.DefinePlugin({
+        'process.env': {
+          OWM_ID: JSON.stringify(process.env.OWM_ID),
+        },
+      }),
     new VueLoaderPlugin(),
   ];
 
