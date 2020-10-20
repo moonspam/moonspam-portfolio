@@ -13,8 +13,8 @@
   "author": "moonspam",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^0.1.19",
     "compass-mixins": "^0.12.10",
@@ -23,14 +23,14 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-loader": "^2.2.1",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.22.1",
     "file-loader": "^2.0.0",
     "html-beautify-webpack-plugin": "^1.0.5",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.11.2",
+    "mini-css-extract-plugin": "^0.11.3",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
     "vue-loader": "^15.9.3",
@@ -40,11 +40,12 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.10.1",
+    "@babel/polyfill": "^7.12.1",
     "axios": "^0.20.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
     "serve-favicon": "^2.5.0",
     "vue": "^2.6.12"
   }
