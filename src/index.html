@@ -5,7 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  ${require('html-loader?interpolate!./_template/share.html')}
+  <meta name="description" content="@@_description">
+  <meta name="keywords" content="@@_keywords">
+  <meta name="author" content="@@_author">
+  <meta property="og:locale" content="@@_og_locale">
+  <meta property="og:title" content="@@_title">
+  <meta property="og:url" content="@@_og_url">
+  <meta property="og:type" content="@@_og_type">
+  <meta property="og:description" content="@@_description">
+  <meta property="og:image" content="@@_og_img_url<%=require('./img/share.png')%>">
+  <meta property="og:image:type" content="@@_og_img_type">
+  <meta property="og:image:width" content="@@_og_img_width">
+  <meta property="og:image:height" content="@@_og_img_height">
+  <meta property="og:image:alt" content="@@_og_img_alt">
   <title>@@_title</title>
   <!-- webfont -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
@@ -13,7 +25,7 @@
 
 <body>
 
-  ${require('html-loader?interpolate!./_template/header.html')}
+  <header id="BG"><span class="info">Seoul, Korea</span><img src="<%=require('./img/me.gif')%>" alt="me"></header>
 
   <div id="app"></div>
 

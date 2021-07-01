@@ -1,5 +1,4 @@
-@import '~compass-mixins/lib/compass/reset';
-@import '~compass-mixins/lib/compass/css3';
+@import "reset";
 @import "variables";
 
 // style
@@ -40,7 +39,7 @@ header {
   height: 100%;
   background: #90a4ae url("../img/bg.png");
   border-bottom: 1px solid #13191c;
-  @include transition(background-color 1s);
+  transition: background-color 1s;
   &:after {
     display: block;
     position: absolute;
@@ -48,7 +47,7 @@ header {
     bottom: 0;
     width: 100%;
     height: 80%;
-    @include background-image(linear-gradient(top, rgba($color: #fff, $alpha: 0) 0%, rgba($color: #fff, $alpha: .3) 100%));
+    background-image: linear-gradient(top, rgba($color: #fff, $alpha: 0) 0%, rgba($color: #fff, $alpha: .3) 100%);
     content: "";
     z-index: 0;
   }
@@ -61,7 +60,7 @@ header {
     width: 200px;
     height: 200px;
     z-index: 1;
-    @include transition(all .3s);
+    transition: all .3s;
   }
   .info {
     position: absolute;
@@ -96,56 +95,56 @@ header {
     content: "☀️ ";
   }
   &.weather_01n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "☀️ ";
   }
   &.weather_02d .info:before {
     content: "⛅️ ";
   }
   &.weather_02n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "⛅️ ";
   }
   &.weather_03d .info:before, &.weather_04d .info:before {
     content: "☁️ ";
   }
   &.weather_03n .info:before, &.weather_04n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "☁️ ";
   }
   &.weather_09d .info:before {
     content: "🌧️ ";
   }
   &.weather_09n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "🌧️ ";
   }
   &.weather_10d .info:before {
     content: "🌦️ ";
   }
   &.weather_10n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "🌦️ ";
   }
   &.weather_11d .info:before {
     content: "🌩️ ";
   }
   &.weather_11n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "🌩️ ";
   }
   &.weather_13d .info:before {
     content: "🌨️ ";
   }
   &.weather_13n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "🌨️ ";
   }
   &.weather_50d .info:before {
     content: "🌫 ";
   }
   &.weather_50n .info:before {
-    @include filter(grayscale(100%));
+    filter: grayscale(100%);
     content: "🌫 ";
   }
 }
@@ -176,8 +175,8 @@ header {
       border-top: 8px solid $gray;
       border-right: 8px solid transparent;
       font-size: 0;
-      @include transition-property(border-color);
-      @include transition-duration(0.3s);
+      transition-property: border-color;
+      transition-duration: 0.3s;
       &:hover {
         border-top-color: lighten($gray, 30%);
       }
@@ -219,14 +218,14 @@ header {
       line-height: 24px;
       &:before {
         font-family: $emoji;
-        @include filter(grayscale(100%));
+        filter: grayscale(100%);
         content: "\01F310";
       }
       > a {
         font-style: italic;
         color: $gray;
-        @include transition-property(color);
-        @include transition-duration(0.3s);
+        transition-property: color;
+        transition-duration: 0.3s;
         &:hover {
           color: lighten($gray, 30%);
         }
@@ -257,7 +256,7 @@ header {
       @for $i from 1 through 10 {
         $percent: $i * 10;
         &.per_#{$percent}:after {
-          width: #{$i}0%;
+          width: #{$i}#{'0%'};
         }
       }
       span {
@@ -338,8 +337,8 @@ header {
           > a {
             font-style: italic;
             color: $gray;
-            @include transition-property(color);
-            @include transition-duration(0.3s);
+            transition-property: color;
+            transition-duration: 0.3s;
             &:hover {
               color: lighten($gray, 30%);
             }

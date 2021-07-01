@@ -5,11 +5,12 @@ const outputPath = './dist/';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const HtmlBeautifyPlugin = require('@nurminen/html-beautify-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 // 사이트 기본 정보 입력
 const siteInfo = {
@@ -34,11 +35,14 @@ const siteInfo = {
   ],
 };
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
   // Webpack 플러그인
   const plugins = [
-    new CleanWebpackPlugin([outputPath]),
-    env.NODE_ENV !== 'production' ? new Dotenv()
+    new ESLintPlugin(),
+    new CleanWebpackPlugin({
+      protectWebpackAssets: false,
+    }),
+    argv.mode !== 'production' ? new Dotenv()
       : new webpack.DefinePlugin({
         'process.env': {
           OWM_ID: JSON.stringify(process.env.OWM_ID),
@@ -51,7 +55,7 @@ module.exports = (env) => {
   ];
 
   // siteInfo.html 값의 개수에 따라 HtmlWebpackPlugin 생성
-  const htmlList = siteInfo.html.map(file => (
+  const htmlList = siteInfo.html.map((file) => (
     new HtmlWebpackPlugin({
       template: `./${file}.html`,
       filename: `${file}.html`,
@@ -95,12 +99,13 @@ module.exports = (env) => {
   return {
     context: path.resolve(__dirname, sourcePath),
     entry: {
-      app: ['@babel/polyfill', './css/style.scss', './js/ui.js'],
+      app: ['./css/style.scss', './js/ui.js'],
     },
     output: {
       filename: './js/[name].bundle.js',
       path: path.resolve(__dirname, outputPath),
     },
+    target: ['web', 'es5'],
     resolve: {
       alias: {
         vue$: 'vue/dist/vue.esm.js',
@@ -108,13 +113,22 @@ module.exports = (env) => {
       extensions: ['*', '.js', '.vue', '.json'],
     },
     devServer: {
-      open: true,
-      contentBase: path.resolve(__dirname, outputPath),
-      watchContentBase: true,
-      inline: true,
+      static: {
+        directory: path.resolve(__dirname, sourcePath),
+        watch: true,
+      },
     },
-    mode: env.NODE_ENV === 'development' ? 'development' : 'production',
-    devtool: env.NODE_ENV === 'development' ? 'source-map' : false,
+    infrastructureLogging: {
+      level: 'warn',
+    },
+    mode: argv.mode === 'development' ? 'development' : 'production',
+    devtool: argv.mode === 'development' ? 'source-map' : false,
+    optimization: {
+      minimize: argv.mode === 'production',
+    },
+    performance: {
+      hints: process.argv.mode === 'production' ? 'warning' : false,
+    },
     module: {
       rules: [
         {
@@ -124,14 +138,21 @@ module.exports = (env) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
+            argv.mode !== 'development' ? 'style-loader'
+              : {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: '/',
+                },
+              },
+            'css-loader',
             {
-              loader: MiniCssExtractPlugin.loader,
+              loader: 'sass-loader',
               options: {
-                publicPath: '../',
+                // eslint-disable-next-line global-require
+                implementation: require('sass'),
               },
             },
-            'css-loader',
-            'sass-loader',
           ],
         },
         {
@@ -140,26 +161,21 @@ module.exports = (env) => {
           loader: 'file-loader',
           options: {
             name: () => {
-              if (env.NODE_ENV === 'development') {
+              if (argv.mode === 'development') {
                 return '[name].[ext]';
               }
               return '[hash].[ext]';
             },
             outputPath: './img/',
+            esModule: false,
           },
-        },
-        {
-          enforce: 'pre',
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
         },
         {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            configFile: './.babelrc',
           },
         },
       ],
