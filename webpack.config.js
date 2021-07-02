@@ -138,7 +138,7 @@ module.exports = (env, argv) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            argv.mode !== 'development' ? 'style-loader'
+            argv.mode === 'development' ? 'style-loader'
               : {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
