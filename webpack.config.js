@@ -7,6 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('@nurminen/html-beautify-webpack-plugin');
@@ -50,6 +51,14 @@ module.exports = (env, argv) => {
       }),
     new MiniCssExtractPlugin({
       filename: './css/style.css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, sourcePath, 'wakemydyno.txt'),
+          to: path.resolve(__dirname, outputPath, 'wakemydyno.txt'),
+        },
+      ],
     }),
     new VueLoaderPlugin(),
   ];
