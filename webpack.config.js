@@ -12,6 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('@nurminen/html-beautify-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // 사이트 기본 정보 입력
 const siteInfo = {
@@ -73,7 +74,7 @@ module.exports = (env, argv) => {
       minify: {
         removeScriptTypeAttributes: true,
       },
-      chunks: ['app'],
+      chunks: 'all',
     })
   ));
 
@@ -126,6 +127,7 @@ module.exports = (env, argv) => {
         directory: path.resolve(__dirname, sourcePath),
         watch: true,
       },
+      open: true,
     },
     infrastructureLogging: {
       level: 'warn',
@@ -133,10 +135,24 @@ module.exports = (env, argv) => {
     mode: argv.mode === 'development' ? 'development' : 'production',
     devtool: argv.mode === 'development' ? 'source-map' : false,
     optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+          },
+        },
+      },
       minimize: argv.mode === 'production',
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+        }),
+      ],
     },
     performance: {
-      hints: process.argv.mode === 'production' ? 'warning' : false,
+      hints: argv.mode === 'production' ? 'warning' : false,
     },
     module: {
       rules: [
