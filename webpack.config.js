@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
         },
       }),
     new MiniCssExtractPlugin({
-      filename: './css/style.css',
+      filename: 'css/style.css',
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -71,9 +71,6 @@ module.exports = (env, argv) => {
       filename: `${file}.html`,
       hash: true,
       inject: 'body',
-      minify: {
-        removeScriptTypeAttributes: true,
-      },
       chunks: 'all',
     })
   ));
@@ -106,14 +103,19 @@ module.exports = (env, argv) => {
     }),
   ];
 
+  console.log('\n********************************************************************************');
+  console.log(`🚀 Build Mode: ${argv.mode}`);
+  console.log('********************************************************************************\n');
+
   return {
     context: path.resolve(__dirname, sourcePath),
     entry: {
       app: ['./css/style.scss', './js/ui.js'],
     },
     output: {
-      filename: './js/[name].bundle.js',
+      filename: 'js/[name].bundle.js',
       path: path.resolve(__dirname, outputPath),
+      publicPath: '/',
     },
     target: ['web', 'es5'],
     resolve: {
@@ -129,8 +131,11 @@ module.exports = (env, argv) => {
       },
       open: true,
     },
-    infrastructureLogging: {
-      level: 'warn',
+    stats: {
+      preset: 'errors-only',
+      builtAt: true,
+      timings: true,
+      version: true,
     },
     mode: argv.mode === 'development' ? 'development' : 'production',
     devtool: argv.mode === 'development' ? 'source-map' : false,
@@ -144,7 +149,6 @@ module.exports = (env, argv) => {
           },
         },
       },
-      minimize: argv.mode === 'production',
       minimizer: [
         new TerserPlugin({
           extractComments: false,
@@ -181,23 +185,16 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(jpe?g|png|gif)$/,
-          exclude: /node_modules/,
-          loader: 'file-loader',
-          options: {
-            name: () => {
-              if (argv.mode === 'development') {
-                return '[name].[ext]';
-              }
-              return '[hash].[ext]';
-            },
-            outputPath: './img/',
-            esModule: false,
+          test: /\.(gif|png|jpe?g)$/,
+          include: /img/,
+          type: 'asset/resource',
+          generator: {
+            filename: argv.mode === 'development' ? '[path][name][ext]' : '[path][name][ext]?[hash]',
           },
         },
         {
-          test: /\.js$/,
-          exclude: /node_modules/,
+          test: /\.m?js$/,
+          exclude: /node_modules(?!\/axios)/,
           loader: 'babel-loader',
           options: {
             configFile: './.babelrc',

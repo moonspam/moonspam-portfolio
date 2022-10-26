@@ -7,12 +7,12 @@
         <h2 id="profile"><a href="#profile" title="Profile 바로 가기" class="anchor">링크</a>Profile</h2>
         <h3><span class="emoji">👨‍💻</span> 문성영</h3>
         <p>
-          <span v-for="tag in tags" :key="tag.id">{{ tag.txt }}</span>
+          <span v-for="tag in gTags" :key="tag.id">{{ tag.txt }}</span>
           <span><a href="http://lunch.moonspam.com" target="_blank">맛집탐방</a></span>
           <span><a href="//www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
         </p>
         <ul>
-          <li v-for="link in links" :key="link.id">
+          <li v-for="link in gLinks" :key="link.id">
             <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
           </li>
         </ul>
@@ -21,13 +21,13 @@
       <section>
         <h2 id="skills"><a href="#skills" title="Skills 바로 가기" class="anchor">링크</a>Skills</h2>
         <ul class="skill">
-          <li v-for="skill in skills" :key="skill.id" :class="'per_'+skill.per" :title="skill.per+'%'"><span>{{ skill.txt }}</span></li>
+          <li v-for="skill in gSkills" :key="skill.id" :class="'per_'+skill.per" :title="skill.per+'%'"><span>{{ skill.txt }}</span></li>
         </ul>
       </section>
       <!-- Experience -->
       <section>
         <h2 id="experience"><a href="#experience" title="Experience 바로 가기" class="anchor">링크</a>Experience</h2>
-        <section v-for="company in companys" :key="company.id" class="company">
+        <section v-for="company in gCompanys" :key="company.id" class="company">
           <div class="company_name">
             <h4>{{ company.name }}</h4>
             <span v-if="company.position" class="position">{{ company.position }}</span>
@@ -58,35 +58,39 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { defineComponent, ref, onMounted, nextTick } from 'vue';
 import { companys, links, skills, tags } from './js/data';
+import axios from 'axios';
 
-export default {
-  data() {
-    return {
-      tags: tags,
-      links: links,
-      skills: skills,
-      companys: companys,
-    }
-  },
-  mounted() {
-    axios
-      .get(`https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=${process.env.OWM_ID}`)
-      .then((response) => {
-        document.getElementById('BG').classList.add(`weather_${response.data.weather[0].icon}`);
-      })
-      .catch((error) => {
-        document.getElementById('BG').classList.add('weather_01d');
-        console.log(error);
+export default defineComponent({
+  setup() {
+    const gTags = ref(tags);
+    const gLinks = ref(links);
+    const gSkills = ref(skills);
+    const gCompanys = ref(companys);
+
+    onMounted(() => {
+      nextTick(() => {
+        axios
+          .get(`https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=${process.env.OWM_ID}`)
+          .then((response) => {
+            document.getElementById('BG').classList.add(`weather_${response.data.weather[0].icon}`);
+          })
+          .catch((error) => {
+            document.getElementById('BG').classList.add('weather_01d');
+            console.log(error);
+          });
+
+        WebFont.load({
+          custom: {
+            families: ['Noto Sans KR'],
+            urls: ['//fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap'],
+          },
+        });
       });
-
-    WebFont.load({
-      custom: {
-        families: ['Noto Sans KR'],
-        urls: ['//fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap'],
-      },
     });
-  },
-}
+
+    return { gTags, gLinks, gSkills, gCompanys }
+  }
+});
 </script>
