@@ -4,13 +4,12 @@ const sourcePath = './src/';
 const outputPath = './dist/';
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('@nurminen/html-beautify-webpack-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -34,6 +33,7 @@ const siteInfo = {
   },
   html: [
     'index',
+    '404',
   ],
 };
 
@@ -44,27 +44,21 @@ module.exports = (env, argv) => {
     new CleanWebpackPlugin({
       protectWebpackAssets: false,
     }),
-    argv.mode !== 'production' ? new Dotenv()
-      : new webpack.DefinePlugin({
-        'process.env': {
-          OWM_ID: JSON.stringify(process.env.OWM_ID),
-        },
-      }),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, sourcePath, 'wakemydyno.txt'),
-          to: path.resolve(__dirname, outputPath, 'wakemydyno.txt'),
+          from: path.resolve(__dirname, sourcePath, 'favicon.ico'),
+          to: path.resolve(__dirname, outputPath, 'favicon.ico'),
         },
       ],
     }),
     new VueLoaderPlugin(),
   ];
 
-  // siteInfo.html 값의 개수에 따라 HtmlWebpackPlugin 생성
+  // siteInfo .html 값의 개수에 따라 HtmlWebpackPlugin 생성
   const htmlList = siteInfo.html.map((file) => (
     new HtmlWebpackPlugin({
       template: `./${file}.html`,
@@ -149,10 +143,12 @@ module.exports = (env, argv) => {
           },
         },
       },
+      minimize: argv.mode === 'production',
       minimizer: [
         new TerserPlugin({
           extractComments: false,
         }),
+        new HtmlMinimizerPlugin(),
       ],
     },
     performance: {

@@ -72,7 +72,7 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         axios
-          .get(`https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=${process.env.OWM_ID}`)
+          .get('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=e8337d945c60e268e0795d92f78d7fe3')
           .then((response) => {
             document.getElementById('BG').classList.add(`weather_${response.data.weather[0].icon}`);
           })
