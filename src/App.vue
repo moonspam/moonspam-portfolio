@@ -8,12 +8,11 @@
         <h3><span class="emoji">👨‍💻</span> 문성영</h3>
         <p>
           <span v-for="tag in gTags" :key="tag.id">{{ tag.txt }}</span>
-          <span><a href="http://lunch.moonspam.com" target="_blank">맛집탐방</a></span>
-          <span><a href="//www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
+          <span><a href="https://www.instagram.com/tonkatstagram" target="_blank">돈가스_덕후</a></span>
         </p>
         <ul>
           <li v-for="link in gLinks" :key="link.id">
-            <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
+            <a :href="link.url" target="_blank">{{ link.txt }}</a>
           </li>
         </ul>
       </section>
@@ -38,13 +37,13 @@
               <h5>{{ project.title }} <small v-if="project.date">{{ project.date }}</small></h5>
               <ul v-if="project.links" class="url">
                 <li v-for="link in project.links" :key="link.id">
-                  <a :href="'//'+link.url" target="_blank">{{ link.txt }}</a>
+                  <a :href="link.url" target="_blank">{{ link.txt }}</a>
                 </li>
               </ul>
-              <blockquote v-if="project.info" :cite="project.info.cite" v-html="project.info.txt"></blockquote>
+              <blockquote v-if="project.info" :site="project.info.site" v-html="project.info.txt"></blockquote>
               <ul v-if="project.todos" class="todo">
                 <li v-for="todo in project.todos" :key="todo.id">
-                  <span v-html="todo.txt"></span> <a v-if="todo.url" :href="'//'+todo.url" class="link" target="_blank" :title="todo.title">링크 이동</a>
+                  <span v-html="todo.txt"></span> <a v-if="todo.url" :href="todo.url" class="link" target="_blank" :title="todo.title">링크 이동</a>
                 </li>
               </ul>
             </div>
